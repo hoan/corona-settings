@@ -1,4 +1,4 @@
-settings.lua stores info in a local file. It will persis
+settings.lua stores info in a local file. 
 
 Do this somewhere in main():
 
