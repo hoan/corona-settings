@@ -1,0 +1,25 @@
+settings.lua stores info in a local file. It will persis
+
+Do this somewhere in main():
+
+settings.load()
+
+Then you can get values easily:
+
+local soundOn = settings.get('sound_on')
+if soundOn then
+  print("Sound is on")
+else
+  print("Sound is off")
+end
+
+You can also set values easily:
+
+settings.set('sound_on', false)
+settings.set('music_on', true)
+
+The info will be saved to a file as soon as settings.set is run.
+The info will persist across the application restarts.
+
+Thats all!
+
