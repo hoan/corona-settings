@@ -7,7 +7,11 @@ function settings.set(key, value)
 end
 
 function settings.get(key)
-	return _G.__settings[key]
+	if _G.__settings then
+		return _G.__settings[key]
+	else
+		return nil
+	end
 end
 
 function settings.save()
@@ -25,9 +29,16 @@ function settings.load()
 	if fh then
 		-- read all contents of file into a string
 		local contents = fh:read("*a")
-		local data = json.decode(contents)
 		
-		_G.__settings = data
+		local succ, data = pcall(function()
+			return json.decode(contents)
+		end)
+		
+		if succ then
+			_G.__settings = data
+		else
+			_G.__settings = {}
+		end
 
 		print("Loaded settings")
 	else
